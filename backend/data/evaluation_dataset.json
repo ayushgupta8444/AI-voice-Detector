@@ -1,0 +1,114 @@
+[
+  {
+    "id": "EVAL_SCAM_01",
+    "expected_label": "scam",
+    "scenario": "Digital Arrest / CBI Impersonation",
+    "language": "en",
+    "transcript": "This is Inspector Sharma from the Crime Branch CBI headquarters Delhi. A non-bailable arrest warrant has been issued against you for illegal money laundering. You are currently under digital arrest. Do not disconnect this call, stay inside your room, and immediately transfer funds to the government safe account for verification.",
+    "expected_indicators": ["IND_IMP_LAW", "IND_URG_01", "IND_SECRECY_01", "IND_FIN_TRANSFER"]
+  },
+  {
+    "id": "EVAL_SCAM_02",
+    "expected_label": "scam",
+    "scenario": "Banking KYC & OTP Harvesting",
+    "language": "en",
+    "transcript": "Hello, I am calling from State Bank of India fraud prevention department. Your debit card and net banking account are suspended due to pending KYC. Within 15 minutes your account will be permanently blocked. Please read out the 6-digit verification code OTP you just received on your registered mobile number.",
+    "expected_indicators": ["IND_CRED_01", "IND_IMP_BANK", "IND_URG_01"]
+  },
+  {
+    "id": "EVAL_SCAM_03",
+    "expected_label": "scam",
+    "scenario": "Tech Support AnyDesk Remote Hijack",
+    "language": "en",
+    "transcript": "Urgent alert from Microsoft Windows support. Multiple dangerous trojan viruses have breached your computer and are targeting your banking passwords. You must install AnyDesk application immediately from the Play Store so our security engineer can remotely control your screen and clear the infection.",
+    "expected_indicators": ["IND_REMOTE_01", "IND_URG_01"]
+  },
+  {
+    "id": "EVAL_SCAM_04",
+    "expected_label": "scam",
+    "scenario": "FedEx Customs Narcotics Contraband",
+    "language": "en",
+    "transcript": "This is FedEx airport customs office. An international parcel containing illegal narcotics and five fake passports registered with your Aadhaar number has been seized. Police will arrive at your home unless you transfer a refundable security deposit to clear your name without delay.",
+    "expected_indicators": ["IND_IMP_PARCEL", "IND_THREAT_01", "IND_FIN_TRANSFER", "IND_URG_01"]
+  },
+  {
+    "id": "EVAL_SCAM_05",
+    "expected_label": "scam",
+    "scenario": "Electricity Power Cut Extortion",
+    "language": "en",
+    "transcript": "Dear consumer, electricity board notice. Your power supply will be disconnected tonight at 9:30 PM due to overdue previous bill payment. Pay immediately through this UPI link or your line will be permanently cut.",
+    "expected_indicators": ["IND_THREAT_01", "IND_URG_01", "IND_PAY_LINK"]
+  },
+  {
+    "id": "EVAL_SCAM_06",
+    "expected_label": "scam",
+    "scenario": "Family Member Distress / Emergency Bail",
+    "language": "en",
+    "transcript": "Sir, your son had an accident and is currently in police custody for hit and run. He will be sent to jail unless you arrange emergency bail money right now. Send 50,000 rupees to this account immediately.",
+    "expected_indicators": ["IND_IMP_FAMILY", "IND_THREAT_01", "IND_URG_01", "IND_FIN_TRANSFER"]
+  },
+  {
+    "id": "EVAL_SCAM_07",
+    "expected_label": "scam",
+    "scenario": "Hindi Bank Account Suspension & OTP Fraud",
+    "language": "hi",
+    "transcript": "Namaste, main bank manager bol raha hoon. Aapka khata block ho gaya hai kyunki KYC complete nahi hua. Turant apna OTP bataiye taaki hum aapka account unblock kar sakein, jaldi karo time kam hai.",
+    "expected_indicators": ["IND_CRED_01", "IND_IMP_BANK", "IND_URG_01"]
+  },
+  {
+    "id": "EVAL_SCAM_08",
+    "expected_label": "scam",
+    "scenario": "Hindi Police Secrecy & Digital Arrest",
+    "language": "hi",
+    "transcript": "Police thanedari se inspector bol raha hoon. Aapke khilaf FIR darj hai illegal parcel case mein. Kisi ko mat batana, phone mat katna aur kamre mein akele baith kar surakshit khate mein paise transfer karein.",
+    "expected_indicators": ["IND_IMP_LAW", "IND_SECRECY_01", "IND_FIN_TRANSFER"]
+  },
+  {
+    "id": "EVAL_BENIGN_01",
+    "expected_label": "benign",
+    "scenario": "E-Commerce Customer Order Update",
+    "language": "en",
+    "transcript": "Hi there! This is Priya from FreshGrocers calling regarding your order placed this morning. We have all items packed and our delivery executive will arrive at your address around 4:30 PM today. Have a wonderful afternoon!",
+    "expected_indicators": []
+  },
+  {
+    "id": "EVAL_BENIGN_02",
+    "expected_label": "benign",
+    "scenario": "Bank Monthly Statement Email Notice",
+    "language": "en",
+    "transcript": "Dear customer, your monthly savings account electronic statement for October has been generated and sent to your registered email. You can safely view it through the official mobile banking app. Thank you for banking with us.",
+    "expected_indicators": []
+  },
+  {
+    "id": "EVAL_BENIGN_03",
+    "expected_label": "benign",
+    "scenario": "Internal Workplace IT System Maintenance",
+    "language": "en",
+    "transcript": "Good morning team, this is IT operations. Routine security patching on the central file server is scheduled for Saturday at 11 PM. You do not need to take any action; system access will automatically resume on Sunday morning.",
+    "expected_indicators": []
+  },
+  {
+    "id": "EVAL_BENIGN_04",
+    "expected_label": "benign",
+    "scenario": "Casual Family Conversation",
+    "language": "en",
+    "transcript": "Hey Mom, just finished my classes for today. I am stopping by the library to return a textbook and then I will take the metro home. Let me know if you need me to pick up any vegetables on the way.",
+    "expected_indicators": []
+  },
+  {
+    "id": "EVAL_BENIGN_05",
+    "expected_label": "benign",
+    "scenario": "Healthcare Clinic Appointment Reminder",
+    "language": "en",
+    "transcript": "Hello Mr. Kumar, this is City Dental Clinic confirming your routine dental checkup scheduled for tomorrow at 11:30 AM with Dr. Mehta. If you need to reschedule, please call our clinic front desk.",
+    "expected_indicators": []
+  },
+  {
+    "id": "EVAL_BENIGN_06",
+    "expected_label": "benign",
+    "scenario": "Hindi Casual Friendly Conversation",
+    "language": "hi",
+    "transcript": "Haan bhai Rohit, main kal shaam ko aane wala hoon tumhare ghar. Kuch naya project discuss karna tha college expo ke liye. Chai pe milte hain kal shaam 6 baje.",
+    "expected_indicators": []
+  }
+]

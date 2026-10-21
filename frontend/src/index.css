@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-cyber-bg text-slate-100 font-sans antialiased min-h-screen selection:bg-cyan-500 selection:text-black;
+  }
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0e17;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* Cyber card glassmorphism */
+.cyber-card {
+  background: rgba(17, 24, 39, 0.75);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(30, 41, 59, 0.8);
+  border-radius: 0.75rem;
+}
+
+.cyber-card-interactive {
+  background: rgba(17, 24, 39, 0.75);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(30, 41, 59, 0.8);
+  border-radius: 0.75rem;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.cyber-card-interactive:hover {
+  border-color: rgba(6, 182, 212, 0.4);
+  box-shadow: 0 0 25px -5px rgba(6, 182, 212, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Pulsing audio animation */
+@keyframes pulseWave {
+  0%, 100% { height: 12px; }
+  50% { height: 36px; }
+}
+
+.wave-bar {
+  animation: pulseWave 1.2s ease-in-out infinite;
+}
