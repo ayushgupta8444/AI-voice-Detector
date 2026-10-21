@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import {
   Activity, ShieldAlert, CheckCircle2, Clock, AlertTriangle,
   ArrowRight, FileText, BarChart2, PieChart as PieChartIcon,
-  Plus, ExternalLink, RefreshCw
+  Plus, RefreshCw
 } from 'lucide-react';
 import {
   PieChart, Pie, Cell, ResponsiveContainer, Tooltip,
@@ -14,10 +14,10 @@ import { DashboardStatsResponse } from '../types';
 import { RiskBadge } from '../components/RiskBadge';
 
 const CATEGORY_COLORS: Record<string, string> = {
-  'Critical Risk': '#f43f5e', // rose
-  'High Risk': '#f97316',     // orange
-  'Medium Risk': '#eab308',   // amber
-  'Low Risk': '#10b981'       // emerald
+  'Critical Risk': '#e11d48', // rose-600
+  'High Risk': '#ea580c',     // orange-600
+  'Medium Risk': '#d97706',   // amber-600
+  'Low Risk': '#16a34a'       // emerald-600
 };
 
 export const DashboardPage: React.FC = () => {
@@ -45,8 +45,8 @@ export const DashboardPage: React.FC = () => {
   if (loading) {
     return (
       <div className="min-h-[60vh] flex flex-col items-center justify-center space-y-3">
-        <div className="w-10 h-10 border-2 border-cyan-500 border-t-transparent rounded-full animate-spin"></div>
-        <p className="text-xs font-mono text-slate-400">Loading security analytics...</p>
+        <div className="w-10 h-10 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+        <p className="text-xs font-medium text-slate-500">Loading security analytics...</p>
       </div>
     );
   }
@@ -57,7 +57,7 @@ export const DashboardPage: React.FC = () => {
         .map(([category, count]) => ({
           name: category,
           value: count,
-          color: CATEGORY_COLORS[category] || '#3b82f6'
+          color: CATEGORY_COLORS[category] || '#2563eb'
         }))
     : [];
 
@@ -68,25 +68,25 @@ export const DashboardPage: React.FC = () => {
       {/* Top Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <div className="flex items-center space-x-2 text-cyan-400 font-mono text-xs">
-            <Activity className="w-4 h-4" />
+          <div className="inline-flex items-center space-x-2 px-2.5 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-200 text-xs font-semibold mb-1">
+            <Activity className="w-3.5 h-3.5 text-blue-600" />
             <span>OPERATIONAL METRICS</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Cybersecurity Dashboard</h1>
-          <p className="text-xs text-slate-400">Telemetry and social engineering trends across analyzed voice recordings</p>
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Cybersecurity Dashboard</h1>
+          <p className="text-xs text-slate-500">Telemetry and social engineering trends across analyzed voice recordings</p>
         </div>
 
-        <div className="flex items-center space-x-3">
+        <div className="flex items-center space-x-2.5">
           <button
             onClick={fetchStats}
-            className="p-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 transition"
+            className="p-2.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-300 text-slate-700 transition shadow-soft-sm"
             title="Refresh Data"
           >
             <RefreshCw className="w-4 h-4" />
           </button>
           <Link
             to="/workspace"
-            className="px-4 py-2 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-black text-xs font-semibold transition flex items-center space-x-2 shadow-cyber-glow"
+            className="px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold transition flex items-center space-x-2 shadow-soft hover:shadow-soft-md"
           >
             <Plus className="w-4 h-4" />
             <span>New Audio Analysis</span>
@@ -95,62 +95,62 @@ export const DashboardPage: React.FC = () => {
       </div>
 
       {error && (
-        <div className="p-4 bg-rose-950/40 border border-rose-800 rounded-lg flex items-start space-x-2 text-rose-300 text-xs">
-          <AlertTriangle className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
+        <div className="p-4 bg-rose-50 border border-rose-200 rounded-xl flex items-start space-x-2 text-rose-700 text-xs">
+          <AlertTriangle className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
           <span>{error}</span>
         </div>
       )}
 
       {/* KPI Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="cyber-card p-5 space-y-2">
-          <div className="flex items-center justify-between text-xs text-slate-400">
-            <span className="font-mono uppercase">Total Analyzed</span>
-            <FileText className="w-4 h-4 text-cyan-400" />
+        <div className="bg-white border border-slate-200 rounded-2xl p-6 space-y-2 shadow-soft">
+          <div className="flex items-center justify-between text-xs text-slate-500 font-semibold uppercase tracking-wider">
+            <span>Total Analyzed</span>
+            <FileText className="w-4 h-4 text-blue-600" />
           </div>
-          <div className="text-3xl font-bold font-mono text-white">
+          <div className="text-3xl font-bold font-mono text-slate-900">
             {stats?.total_analyses || 0}
           </div>
-          <div className="text-[11px] text-slate-500 font-mono">
+          <div className="text-xs text-slate-500">
             Success: {stats?.success_count || 0} &middot; Failures: {stats?.failure_count || 0}
           </div>
         </div>
 
-        <div className="cyber-card p-5 space-y-2 border-rose-900/60">
-          <div className="flex items-center justify-between text-xs text-slate-400">
-            <span className="font-mono uppercase">Critical Threat Calls</span>
-            <ShieldAlert className="w-4 h-4 text-rose-400" />
+        <div className="bg-white border border-rose-200 rounded-2xl p-6 space-y-2 shadow-soft">
+          <div className="flex items-center justify-between text-xs text-rose-600 font-semibold uppercase tracking-wider">
+            <span>Critical Threat Calls</span>
+            <ShieldAlert className="w-4 h-4 text-rose-600" />
           </div>
-          <div className="text-3xl font-bold font-mono text-rose-400">
+          <div className="text-3xl font-bold font-mono text-rose-600">
             {stats?.category_counts['Critical Risk'] || 0}
           </div>
-          <div className="text-[11px] text-slate-500 font-mono">
+          <div className="text-xs text-slate-500">
             Digital Arrest / OTP extortion
           </div>
         </div>
 
-        <div className="cyber-card p-5 space-y-2 border-orange-900/60">
-          <div className="flex items-center justify-between text-xs text-slate-400">
-            <span className="font-mono uppercase">High Risk Attempts</span>
-            <AlertTriangle className="w-4 h-4 text-orange-400" />
+        <div className="bg-white border border-orange-200 rounded-2xl p-6 space-y-2 shadow-soft">
+          <div className="flex items-center justify-between text-xs text-orange-600 font-semibold uppercase tracking-wider">
+            <span>High Risk Attempts</span>
+            <AlertTriangle className="w-4 h-4 text-orange-600" />
           </div>
-          <div className="text-3xl font-bold font-mono text-orange-400">
+          <div className="text-3xl font-bold font-mono text-orange-600">
             {stats?.category_counts['High Risk'] || 0}
           </div>
-          <div className="text-[11px] text-slate-500 font-mono">
+          <div className="text-xs text-slate-500">
             AnyDesk / Impersonation / Threats
           </div>
         </div>
 
-        <div className="cyber-card p-5 space-y-2 border-emerald-900/60">
-          <div className="flex items-center justify-between text-xs text-slate-400">
-            <span className="font-mono uppercase">Benign Verified</span>
-            <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+        <div className="bg-white border border-emerald-200 rounded-2xl p-6 space-y-2 shadow-soft">
+          <div className="flex items-center justify-between text-xs text-emerald-700 font-semibold uppercase tracking-wider">
+            <span>Benign Verified</span>
+            <CheckCircle2 className="w-4 h-4 text-emerald-600" />
           </div>
-          <div className="text-3xl font-bold font-mono text-emerald-400">
+          <div className="text-3xl font-bold font-mono text-emerald-700">
             {stats?.category_counts['Low Risk'] || 0}
           </div>
-          <div className="text-[11px] text-slate-500 font-mono">
+          <div className="text-xs text-slate-500">
             Zero threat indicators detected
           </div>
         </div>
@@ -158,20 +158,20 @@ export const DashboardPage: React.FC = () => {
 
       {!hasData ? (
         /* Empty State */
-        <div className="cyber-card p-12 text-center space-y-4">
-          <div className="w-14 h-14 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-500 mx-auto">
+        <div className="bg-white border border-slate-200 rounded-2xl p-12 text-center space-y-4 shadow-soft">
+          <div className="w-14 h-14 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 mx-auto">
             <Activity className="w-7 h-7" />
           </div>
           <div className="space-y-1">
-            <h3 className="text-lg font-bold text-slate-200">No Analysis Telemetry Yet</h3>
-            <p className="text-xs text-slate-400 max-w-sm mx-auto">
+            <h3 className="text-lg font-bold text-slate-900">No Analysis Telemetry Yet</h3>
+            <p className="text-xs text-slate-500 max-w-sm mx-auto">
               You haven't performed any audio analyses yet. Launch the workspace to record or upload a voice recording.
             </p>
           </div>
           <div className="pt-2">
             <Link
               to="/workspace"
-              className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-black text-xs font-semibold shadow-cyber-glow transition"
+              className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold shadow-soft transition"
             >
               <span>Analyze Your First Audio</span>
               <ArrowRight className="w-4 h-4" />
@@ -183,13 +183,13 @@ export const DashboardPage: React.FC = () => {
           {/* Charts Row */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Risk Category Distribution (Donut Chart) */}
-            <div className="cyber-card p-6 space-y-4">
+            <div className="bg-white border border-slate-200 rounded-2xl p-6 space-y-4 shadow-soft">
               <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-2 text-xs font-mono text-cyan-400">
-                  <PieChartIcon className="w-4 h-4" />
+                <div className="flex items-center space-x-2 text-xs font-semibold text-slate-700">
+                  <PieChartIcon className="w-4 h-4 text-blue-600" />
                   <span>RISK CATEGORY DISTRIBUTION</span>
                 </div>
-                <span className="text-[11px] text-slate-500 font-mono">{stats?.total_analyses} Total Cases</span>
+                <span className="text-xs text-slate-500 font-medium">{stats?.total_analyses} Total Cases</span>
               </div>
 
               <div className="h-64">
@@ -211,38 +211,40 @@ export const DashboardPage: React.FC = () => {
                     </Pie>
                     <Tooltip
                       contentStyle={{
-                        backgroundColor: '#0a0e17',
-                        borderColor: '#1e293b',
-                        borderRadius: '0.5rem',
-                        fontSize: '12px'
+                        backgroundColor: '#ffffff',
+                        borderColor: '#e2e8f0',
+                        borderRadius: '0.75rem',
+                        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.08)',
+                        fontSize: '12px',
+                        color: '#0f172a'
                       }}
                     />
                   </PieChart>
                 </ResponsiveContainer>
               </div>
 
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-2 border-t border-slate-800 text-[11px] font-mono">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-3 border-t border-slate-100 text-xs">
                 {Object.entries(stats?.category_counts || {}).map(([cat, count]) => (
                   <div key={cat} className="flex items-center space-x-1.5">
                     <span
                       className="w-2.5 h-2.5 rounded-full shrink-0"
                       style={{ backgroundColor: CATEGORY_COLORS[cat] }}
                     ></span>
-                    <span className="text-slate-400 truncate">{cat}:</span>
-                    <span className="text-white font-bold">{count}</span>
+                    <span className="text-slate-500 truncate">{cat}:</span>
+                    <span className="text-slate-900 font-bold">{count}</span>
                   </div>
                 ))}
               </div>
             </div>
 
             {/* Top Attack Vectors (Bar Chart) */}
-            <div className="cyber-card p-6 space-y-4">
+            <div className="bg-white border border-slate-200 rounded-2xl p-6 space-y-4 shadow-soft">
               <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-2 text-xs font-mono text-cyan-400">
-                  <BarChart2 className="w-4 h-4" />
+                <div className="flex items-center space-x-2 text-xs font-semibold text-slate-700">
+                  <BarChart2 className="w-4 h-4 text-blue-600" />
                   <span>COMMONLY DETECTED SCAM VECTORS</span>
                 </div>
-                <span className="text-[11px] text-slate-500 font-mono">Frequency Count</span>
+                <span className="text-xs text-slate-500 font-medium">Frequency Count</span>
               </div>
 
               <div className="h-64">
@@ -253,35 +255,37 @@ export const DashboardPage: React.FC = () => {
                       layout="vertical"
                       margin={{ top: 5, right: 20, left: 40, bottom: 5 }}
                     >
-                      <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" horizontal={false} />
-                      <XAxis type="number" stroke="#64748b" fontSize={11} />
+                      <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" horizontal={false} />
+                      <XAxis type="number" stroke="#94a3b8" fontSize={11} />
                       <YAxis
                         type="category"
                         dataKey="name"
-                        stroke="#94a3b8"
+                        stroke="#64748b"
                         fontSize={10}
                         width={130}
                         tickFormatter={(val) => val.length > 18 ? val.slice(0, 18) + '...' : val}
                       />
                       <Tooltip
                         contentStyle={{
-                          backgroundColor: '#0a0e17',
-                          borderColor: '#1e293b',
-                          borderRadius: '0.5rem',
-                          fontSize: '12px'
+                          backgroundColor: '#ffffff',
+                          borderColor: '#e2e8f0',
+                          borderRadius: '0.75rem',
+                          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.08)',
+                          fontSize: '12px',
+                          color: '#0f172a'
                         }}
                       />
-                      <Bar dataKey="count" fill="#06b6d4" radius={[0, 4, 4, 0]} />
+                      <Bar dataKey="count" fill="#2563eb" radius={[0, 6, 6, 0]} />
                     </BarChart>
                   </ResponsiveContainer>
                 ) : (
-                  <div className="h-full flex items-center justify-center text-xs text-slate-500 italic">
+                  <div className="h-full flex items-center justify-center text-xs text-slate-400 italic">
                     No scam indicators logged in active database records.
                   </div>
                 )}
               </div>
 
-              <p className="text-[11px] text-slate-500 border-t border-slate-800 pt-2 font-mono">
+              <p className="text-xs text-slate-500 border-t border-slate-100 pt-2 font-medium">
                 Identified through deterministic rule grammars and acoustic feature extraction.
               </p>
             </div>
@@ -289,13 +293,13 @@ export const DashboardPage: React.FC = () => {
 
           {/* Timeline Chart */}
           {stats?.timeline && stats.timeline.length > 1 && (
-            <div className="cyber-card p-6 space-y-4">
+            <div className="bg-white border border-slate-200 rounded-2xl p-6 space-y-4 shadow-soft">
               <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-2 text-xs font-mono text-cyan-400">
-                  <Clock className="w-4 h-4" />
+                <div className="flex items-center space-x-2 text-xs font-semibold text-slate-700">
+                  <Clock className="w-4 h-4 text-blue-600" />
                   <span>SCAM RISK SCORE TIMELINE</span>
                 </div>
-                <span className="text-[11px] text-slate-500 font-mono">Recent Incident Flow</span>
+                <span className="text-xs text-slate-500 font-medium">Recent Incident Flow</span>
               </div>
 
               <div className="h-52">
@@ -303,25 +307,27 @@ export const DashboardPage: React.FC = () => {
                   <AreaChart data={stats.timeline}>
                     <defs>
                       <linearGradient id="scoreGrad" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="#06b6d4" stopOpacity={0.4} />
-                        <stop offset="95%" stopColor="#06b6d4" stopOpacity={0} />
+                        <stop offset="5%" stopColor="#2563eb" stopOpacity={0.25} />
+                        <stop offset="95%" stopColor="#2563eb" stopOpacity={0} />
                       </linearGradient>
                     </defs>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
-                    <XAxis dataKey="date" stroke="#64748b" fontSize={10} />
-                    <YAxis domain={[0, 100]} stroke="#64748b" fontSize={10} />
+                    <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
+                    <XAxis dataKey="date" stroke="#94a3b8" fontSize={10} />
+                    <YAxis domain={[0, 100]} stroke="#94a3b8" fontSize={10} />
                     <Tooltip
                       contentStyle={{
-                        backgroundColor: '#0a0e17',
-                        borderColor: '#1e293b',
-                        borderRadius: '0.5rem',
-                        fontSize: '12px'
+                        backgroundColor: '#ffffff',
+                        borderColor: '#e2e8f0',
+                        borderRadius: '0.75rem',
+                        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.08)',
+                        fontSize: '12px',
+                        color: '#0f172a'
                       }}
                     />
                     <Area
                       type="monotone"
                       dataKey="score"
-                      stroke="#06b6d4"
+                      stroke="#2563eb"
                       strokeWidth={2}
                       fillOpacity={1}
                       fill="url(#scoreGrad)"
@@ -333,10 +339,10 @@ export const DashboardPage: React.FC = () => {
           )}
 
           {/* Recent Analysis Activity Table */}
-          <div className="cyber-card p-6 space-y-4">
+          <div className="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 space-y-4 shadow-soft">
             <div className="flex items-center justify-between">
-              <h2 className="text-base font-bold text-white">Recent Analyses</h2>
-              <Link to="/history" className="text-xs text-cyan-400 hover:underline flex items-center space-x-1">
+              <h2 className="text-base font-bold text-slate-900">Recent Analyses</h2>
+              <Link to="/history" className="text-xs font-semibold text-blue-600 hover:text-blue-700 flex items-center space-x-1">
                 <span>View Full History</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
@@ -344,38 +350,38 @@ export const DashboardPage: React.FC = () => {
 
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs">
-                <thead className="border-b border-slate-800 text-slate-400 font-mono">
+                <thead className="border-b border-slate-200 text-slate-500 font-semibold uppercase tracking-wider">
                   <tr>
-                    <th className="pb-3 font-medium">Recording / Source</th>
-                    <th className="pb-3 font-medium">Severity</th>
-                    <th className="pb-3 font-medium">Score</th>
-                    <th className="pb-3 font-medium">Indicators</th>
-                    <th className="pb-3 font-medium">Analyzed</th>
-                    <th className="pb-3 font-medium text-right">Action</th>
+                    <th className="pb-3">Recording / Source</th>
+                    <th className="pb-3">Severity</th>
+                    <th className="pb-3">Score</th>
+                    <th className="pb-3">Indicators</th>
+                    <th className="pb-3">Analyzed</th>
+                    <th className="pb-3 text-right">Action</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-800/60 text-slate-300">
+                <tbody className="divide-y divide-slate-100 text-slate-600">
                   {stats?.recent_analyses.map((a) => (
-                    <tr key={a.id} className="hover:bg-slate-900/50 transition">
-                      <td className="py-3 font-mono font-medium text-white truncate max-w-xs">
+                    <tr key={a.id} className="hover:bg-slate-50 transition-colors">
+                      <td className="py-3 font-medium text-slate-900 truncate max-w-xs">
                         {a.original_filename}
                       </td>
                       <td className="py-3">
                         <RiskBadge category={a.scam_risk_category} size="sm" />
                       </td>
-                      <td className="py-3 font-mono font-bold">
+                      <td className="py-3 font-mono font-bold text-slate-900">
                         {a.scam_risk_score.toFixed(1)}/100
                       </td>
-                      <td className="py-3 font-mono text-slate-400">
+                      <td className="py-3 font-medium text-slate-600">
                         {a.detected_indicators.length} signs
                       </td>
-                      <td className="py-3 text-slate-400 font-mono">
+                      <td className="py-3 text-slate-500">
                         {new Date(a.created_at).toLocaleDateString()}
                       </td>
                       <td className="py-3 text-right">
                         <Link
                           to={`/analyses/${a.id}`}
-                          className="px-2.5 py-1 rounded bg-slate-800 hover:bg-cyan-500 hover:text-black text-slate-300 transition text-[11px] font-mono"
+                          className="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-blue-600 hover:text-white text-slate-700 transition text-xs font-semibold"
                         >
                           View Report
                         </Link>

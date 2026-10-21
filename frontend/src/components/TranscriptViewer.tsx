@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { IndicatorDetail } from '../types';
-import { AlertCircle, Info } from 'lucide-react';
+import { Info } from 'lucide-react';
 
 interface TranscriptViewerProps {
   transcript: string;
@@ -42,11 +42,11 @@ export const TranscriptViewer: React.FC<TranscriptViewerProps> = ({
 
     // Highlighted scam text
     if (end > start) {
-      let highlightClass = 'bg-amber-500/20 text-amber-300 border-b-2 border-amber-500';
+      let highlightClass = 'bg-amber-100 text-amber-900 border-b-2 border-amber-500';
       if (ind.severity === 'critical') {
-        highlightClass = 'bg-rose-500/25 text-rose-200 border-b-2 border-rose-500 font-medium';
+        highlightClass = 'bg-rose-100 text-rose-900 border-b-2 border-rose-500 font-medium';
       } else if (ind.severity === 'high') {
-        highlightClass = 'bg-orange-500/25 text-orange-200 border-b-2 border-orange-500 font-medium';
+        highlightClass = 'bg-orange-100 text-orange-900 border-b-2 border-orange-500 font-medium';
       }
 
       segments.push(
@@ -56,11 +56,11 @@ export const TranscriptViewer: React.FC<TranscriptViewerProps> = ({
             setActiveIndicator(ind);
             if (onSelectIndicator) onSelectIndicator(ind);
           }}
-          className={`cursor-pointer px-1 py-0.5 rounded transition hover:opacity-80 relative group ${highlightClass}`}
+          className={`cursor-pointer px-1 py-0.5 rounded transition hover:opacity-90 relative group ${highlightClass}`}
           title={`${ind.name} (${ind.severity.toUpperCase()}) - Click to inspect`}
         >
           {transcript.slice(start, end)}
-          <span className="inline-block ml-1 text-[10px] font-mono px-1 rounded bg-black/50 text-slate-300">
+          <span className="inline-block ml-1 text-[10px] font-mono px-1 rounded bg-white/90 text-slate-700 border border-slate-300 shadow-soft-sm">
             {ind.severity[0].toUpperCase()}
           </span>
         </span>
@@ -81,21 +81,23 @@ export const TranscriptViewer: React.FC<TranscriptViewerProps> = ({
 
   return (
     <div className="space-y-4">
-      <div className="bg-slate-950/70 border border-slate-800 rounded-lg p-5 font-sans text-sm leading-relaxed text-slate-200 whitespace-pre-wrap selection:bg-cyan-500 selection:text-black">
+      <div className="bg-slate-50 border border-slate-200 rounded-xl p-5 font-sans text-sm leading-relaxed text-slate-800 whitespace-pre-wrap selection:bg-blue-100 selection:text-blue-900 shadow-soft-sm">
         {segments}
       </div>
 
       {activeIndicator && (
-        <div className="p-3.5 bg-slate-900 border border-cyan-500/40 rounded-lg flex items-start space-x-3 text-xs shadow-cyber-glow">
-          <Info className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
+        <div className="p-4 bg-blue-50/80 border border-blue-200 rounded-xl flex items-start space-x-3 text-xs shadow-soft-sm">
+          <div className="w-5 h-5 rounded bg-blue-100 text-blue-700 flex items-center justify-center shrink-0 mt-0.5">
+            <Info className="w-3.5 h-3.5" />
+          </div>
           <div className="space-y-1">
             <div className="flex items-center space-x-2">
-              <span className="font-semibold text-slate-200">{activeIndicator.name}</span>
-              <span className="uppercase text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-slate-800 text-cyan-400">
+              <span className="font-semibold text-slate-900">{activeIndicator.name}</span>
+              <span className="uppercase text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-blue-100 text-blue-700 border border-blue-200">
                 {activeIndicator.category}
               </span>
             </div>
-            <p className="text-slate-400">{activeIndicator.explanation}</p>
+            <p className="text-slate-600 leading-relaxed">{activeIndicator.explanation}</p>
           </div>
         </div>
       )}

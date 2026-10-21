@@ -3,29 +3,36 @@ import { PhoneCall, ShieldAlert, ExternalLink, AlertOctagon } from 'lucide-react
 
 export const CybercrimeHelpline: React.FC = () => {
   return (
-    <div className="bg-gradient-to-br from-slate-900 to-cyan-950/20 border border-cyan-800/40 rounded-xl p-5 space-y-4">
-      <div className="flex items-center space-x-2 text-cyan-400">
-        <ShieldAlert className="w-5 h-5 text-cyan-400" />
-        <h3 className="font-semibold text-sm tracking-wide text-white">Official Cybercrime Response Resources</h3>
+    <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-soft space-y-5">
+      <div className="flex items-center space-x-3">
+        <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center border border-blue-100">
+          <ShieldAlert className="w-4 h-4" />
+        </div>
+        <div>
+          <h3 className="font-semibold text-sm text-slate-900">Official Cybercrime Response Resources</h3>
+          <p className="text-xs text-slate-500">Government of India cyber defense portals & immediate action helplines</p>
+        </div>
       </div>
 
-      <p className="text-xs text-slate-300 leading-relaxed">
+      <p className="text-xs text-slate-600 leading-relaxed">
         If you or someone you know has been targeted by a financial voice scam, take immediate defensive action. Timely reporting within the initial "Golden Hours" enables law enforcement and nodal bank authorities to freeze fraudulent account transfers.
       </p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
         {/* National Helpline 1930 */}
         <a
           href="tel:1930"
-          className="p-3.5 rounded-lg bg-slate-900/90 border border-slate-700/80 hover:border-cyan-500/50 transition flex flex-col justify-between space-y-2 group"
+          className="p-4 rounded-xl bg-slate-50/80 border border-slate-200 hover:border-blue-300 hover:bg-blue-50/30 transition-all flex flex-col justify-between space-y-2.5 group shadow-soft-sm"
         >
-          <div className="flex items-center justify-between text-xs text-slate-400">
-            <span className="font-mono text-[10px] uppercase">Citizen Helpline</span>
-            <PhoneCall className="w-4 h-4 text-cyan-400 group-hover:scale-110 transition-transform" />
+          <div className="flex items-center justify-between text-xs text-slate-500">
+            <span className="text-[10px] uppercase font-bold tracking-wider text-slate-400">Citizen Helpline</span>
+            <div className="w-6 h-6 rounded-md bg-blue-100 text-blue-700 flex items-center justify-center group-hover:scale-110 transition-transform">
+              <PhoneCall className="w-3.5 h-3.5" />
+            </div>
           </div>
           <div>
-            <div className="text-lg font-bold font-mono text-cyan-300">Dial 1930</div>
-            <p className="text-[11px] text-slate-400">National Cyber Crime Reporting Helpline (24x7 Free)</p>
+            <div className="text-xl font-bold text-blue-700">Dial 1930</div>
+            <p className="text-xs text-slate-500 mt-0.5">National Cyber Crime Reporting Helpline (24x7 Free)</p>
           </div>
         </a>
 
@@ -34,15 +41,17 @@ export const CybercrimeHelpline: React.FC = () => {
           href="https://cybercrime.gov.in"
           target="_blank"
           rel="noreferrer"
-          className="p-3.5 rounded-lg bg-slate-900/90 border border-slate-700/80 hover:border-cyan-500/50 transition flex flex-col justify-between space-y-2 group"
+          className="p-4 rounded-xl bg-slate-50/80 border border-slate-200 hover:border-blue-300 hover:bg-blue-50/30 transition-all flex flex-col justify-between space-y-2.5 group shadow-soft-sm"
         >
-          <div className="flex items-center justify-between text-xs text-slate-400">
-            <span className="font-mono text-[10px] uppercase">Official Portal</span>
-            <ExternalLink className="w-4 h-4 text-cyan-400 group-hover:scale-110 transition-transform" />
+          <div className="flex items-center justify-between text-xs text-slate-500">
+            <span className="text-[10px] uppercase font-bold tracking-wider text-slate-400">Official Portal</span>
+            <div className="w-6 h-6 rounded-md bg-slate-200 text-slate-700 flex items-center justify-center group-hover:scale-110 transition-transform">
+              <ExternalLink className="w-3.5 h-3.5" />
+            </div>
           </div>
           <div>
-            <div className="text-sm font-bold text-slate-100">cybercrime.gov.in</div>
-            <p className="text-[11px] text-slate-400">File official FIR / complaint with Indian Cyber Crime Cell</p>
+            <div className="text-sm font-bold text-slate-900 group-hover:text-blue-600 transition-colors">cybercrime.gov.in</div>
+            <p className="text-xs text-slate-500 mt-0.5">File official FIR / complaint with Indian Cyber Crime Cell</p>
           </div>
         </a>
 
@@ -51,23 +60,25 @@ export const CybercrimeHelpline: React.FC = () => {
           href="https://sancharsaathi.gov.in/sfc/"
           target="_blank"
           rel="noreferrer"
-          className="p-3.5 rounded-lg bg-slate-900/90 border border-slate-700/80 hover:border-cyan-500/50 transition flex flex-col justify-between space-y-2 group"
+          className="p-4 rounded-xl bg-slate-50/80 border border-slate-200 hover:border-blue-300 hover:bg-blue-50/30 transition-all flex flex-col justify-between space-y-2.5 group shadow-soft-sm"
         >
-          <div className="flex items-center justify-between text-xs text-slate-400">
-            <span className="font-mono text-[10px] uppercase">DoT Telecom Shield</span>
-            <ExternalLink className="w-4 h-4 text-cyan-400 group-hover:scale-110 transition-transform" />
+          <div className="flex items-center justify-between text-xs text-slate-500">
+            <span className="text-[10px] uppercase font-bold tracking-wider text-slate-400">DoT Telecom Shield</span>
+            <div className="w-6 h-6 rounded-md bg-slate-200 text-slate-700 flex items-center justify-center group-hover:scale-110 transition-transform">
+              <ExternalLink className="w-3.5 h-3.5" />
+            </div>
           </div>
           <div>
-            <div className="text-sm font-bold text-slate-100">Chakshu Portal</div>
-            <p className="text-[11px] text-slate-400">Report fraudulent WhatsApp/voice calls and SMS numbers</p>
+            <div className="text-sm font-bold text-slate-900 group-hover:text-blue-600 transition-colors">Chakshu Portal</div>
+            <p className="text-xs text-slate-500 mt-0.5">Report fraudulent WhatsApp/voice calls and SMS numbers</p>
           </div>
         </a>
       </div>
 
-      <div className="flex items-start space-x-2 text-[11px] text-slate-400 bg-slate-950/60 p-2.5 rounded-md border border-slate-800">
-        <AlertOctagon className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+      <div className="flex items-start space-x-2 text-xs text-slate-600 bg-amber-50/80 p-3 rounded-xl border border-amber-200">
+        <AlertOctagon className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
         <span>
-          Notice: VoiceShield AI connects you to verified Indian government portals. Analyzing audio on this tool does NOT automatically register a police complaint.
+          <strong>Advisory Notice:</strong> VoiceShield AI connects you to verified Indian government portals. Analyzing audio on this tool does NOT automatically register a police complaint.
         </span>
       </div>
     </div>

@@ -74,7 +74,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({ src, filename, duratio
   };
 
   return (
-    <div className="bg-slate-900/90 border border-slate-800 rounded-lg p-4">
+    <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 shadow-soft-sm">
       <audio
         ref={audioRef}
         src={src}
@@ -87,10 +87,10 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({ src, filename, duratio
         {/* Track Title and duration */}
         <div className="flex items-center justify-between text-xs">
           <div className="flex items-center space-x-2 truncate">
-            <span className="w-2 h-2 rounded-full bg-cyan-400"></span>
-            <span className="font-mono text-slate-300 truncate">{filename || 'Audio Recording'}</span>
+            <span className="w-2 h-2 rounded-full bg-blue-600"></span>
+            <span className="font-medium text-slate-800 truncate">{filename || 'Audio Recording'}</span>
           </div>
-          <span className="font-mono text-slate-400">
+          <span className="font-mono text-slate-500 font-medium">
             {formatTime(currentTime)} / {formatTime(duration)}
           </span>
         </div>
@@ -104,7 +104,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({ src, filename, duratio
             step={0.1}
             value={currentTime}
             onChange={handleSeek}
-            className="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-cyan-400 focus:outline-none"
+            className="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-600 focus:outline-none"
           />
         </div>
 
@@ -113,7 +113,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({ src, filename, duratio
           <div className="flex items-center space-x-2">
             <button
               onClick={togglePlay}
-              className="w-9 h-9 rounded-full bg-cyan-500 hover:bg-cyan-400 text-black flex items-center justify-center transition shadow-cyber-glow"
+              className="w-9 h-9 rounded-full bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center transition shadow-soft hover:shadow-soft-md"
               title={isPlaying ? 'Pause' : 'Play'}
             >
               {isPlaying ? <Pause className="w-4 h-4 fill-current" /> : <Play className="w-4 h-4 fill-current ml-0.5" />}
@@ -126,7 +126,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({ src, filename, duratio
                   setCurrentTime(0);
                 }
               }}
-              className="p-2 text-slate-400 hover:text-slate-200 transition"
+              className="p-2 text-slate-500 hover:text-slate-800 transition rounded-lg hover:bg-slate-200/60"
               title="Restart"
             >
               <RotateCcw className="w-4 h-4" />
@@ -137,7 +137,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({ src, filename, duratio
           <div className="flex items-center space-x-2">
             <button
               onClick={toggleMute}
-              className="text-slate-400 hover:text-slate-200 transition"
+              className="text-slate-500 hover:text-slate-800 transition p-1"
             >
               {isMuted || volume === 0 ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
             </button>
@@ -148,7 +148,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({ src, filename, duratio
               step={0.05}
               value={isMuted ? 0 : volume}
               onChange={handleVolumeChange}
-              className="w-16 h-1 bg-slate-800 rounded appearance-none cursor-pointer accent-cyan-400"
+              className="w-16 h-1 bg-slate-200 rounded appearance-none cursor-pointer accent-blue-600"
             />
           </div>
         </div>

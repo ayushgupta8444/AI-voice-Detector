@@ -6,53 +6,59 @@
 
 @layer base {
   body {
-    @apply bg-cyber-bg text-slate-100 font-sans antialiased min-h-screen selection:bg-cyan-500 selection:text-black;
+    @apply bg-slate-50 text-slate-800 font-sans antialiased min-h-screen selection:bg-blue-100 selection:text-blue-900;
   }
 }
 
-/* Custom scrollbars */
+/* Modern clean scrollbars */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
 }
 ::-webkit-scrollbar-track {
-  background: #0a0e17;
+  background: #f1f5f9;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
-  border-radius: 4px;
+  background: #cbd5e1;
+  border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+  background: #94a3b8;
 }
 
-/* Cyber card glassmorphism */
+/* Professional card containers */
 .cyber-card {
-  background: rgba(17, 24, 39, 0.75);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(30, 41, 59, 0.8);
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
   border-radius: 0.75rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.02);
 }
 
 .cyber-card-interactive {
-  background: rgba(17, 24, 39, 0.75);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(30, 41, 59, 0.8);
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
   border-radius: 0.75rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.02);
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .cyber-card-interactive:hover {
-  border-color: rgba(6, 182, 212, 0.4);
-  box-shadow: 0 0 25px -5px rgba(6, 182, 212, 0.15);
+  border-color: #93c5fd;
+  box-shadow: 0 10px 25px -4px rgba(37, 99, 235, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
   transform: translateY(-2px);
 }
 
-/* Pulsing audio animation */
+/* Audio waveform animation */
 @keyframes pulseWave {
-  0%, 100% { height: 12px; }
-  50% { height: 36px; }
+  0%, 100% { height: 8px; opacity: 0.6; }
+  50% { height: 32px; opacity: 1; }
 }
 
 .wave-bar {
-  animation: pulseWave 1.2s ease-in-out infinite;
+  animation: pulseWave 1.1s ease-in-out infinite;
+}
+
+/* Subtle background grid pattern for enterprise hero */
+.bg-grid-pattern {
+  background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+  background-size: 24px 24px;
 }

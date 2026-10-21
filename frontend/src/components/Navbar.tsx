@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { Shield, Activity, Mic, History, Settings, LogOut, User as UserIcon, BookOpen, Menu, X, ShieldAlert } from 'lucide-react';
+import { Shield, Activity, Mic, History, Settings, LogOut, BookOpen, Menu, X } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 export const Navbar: React.FC = () => {
@@ -12,70 +12,72 @@ export const Navbar: React.FC = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <nav className="border-b border-cyber-border bg-[#0a0e17]/90 backdrop-blur-md sticky top-0 z-50">
+    <nav className="border-b border-slate-200 bg-white/95 backdrop-blur-md sticky top-0 z-50 transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo & Brand */}
           <Link to="/" className="flex items-center space-x-3 group">
-            <div className="w-10 h-10 rounded-lg bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 group-hover:border-cyan-400 transition-all shadow-cyber-glow">
-              <Shield className="w-5 h-5 text-cyan-400" />
+            <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white shadow-soft group-hover:bg-blue-700 transition-all">
+              <Shield className="w-5 h-5 text-white" />
             </div>
             <div>
               <div className="flex items-center space-x-2">
-                <span className="font-bold text-lg text-white tracking-wide">VoiceShield<span className="text-cyan-400">.AI</span></span>
-                <span className="px-1.5 py-0.5 text-[10px] uppercase font-mono font-semibold tracking-wider rounded bg-cyan-950 text-cyan-400 border border-cyan-800">INS EXPO</span>
+                <span className="font-bold text-lg text-slate-900 tracking-tight">VoiceShield<span className="text-blue-600">.AI</span></span>
+                <span className="px-2 py-0.5 text-[10px] font-semibold tracking-wide rounded-full bg-blue-50 text-blue-700 border border-blue-200">
+                  INS EXPO
+                </span>
               </div>
-              <p className="text-[11px] text-slate-400 font-mono -mt-0.5">Voice Scam & Forensics Risk Analyzer</p>
+              <p className="text-[11px] text-slate-500 font-medium -mt-0.5">Voice Scam & Forensics Risk Engine</p>
             </div>
           </Link>
 
           {/* Desktop Navigation Links */}
-          <div className="hidden md:flex items-center space-x-1 lg:space-x-2">
+          <div className="hidden md:flex items-center space-x-1 lg:space-x-1.5">
             <Link
               to="/workspace"
-              className={`flex items-center space-x-1.5 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+              className={`flex items-center space-x-2 px-3.5 py-2 rounded-lg text-sm font-medium transition-all ${
                 isActive('/workspace')
-                  ? 'bg-cyan-500/10 text-cyan-400 border border-cyan-500/30'
-                  : 'text-slate-300 hover:text-white hover:bg-slate-800/50'
+                  ? 'bg-blue-50 text-blue-700 border border-blue-100 shadow-soft-sm'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/80'
               }`}
             >
-              <Mic className="w-4 h-4 text-cyan-400" />
+              <Mic className="w-4 h-4 text-blue-600" />
               <span>Workspace</span>
             </Link>
 
             <Link
               to="/dashboard"
-              className={`flex items-center space-x-1.5 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+              className={`flex items-center space-x-2 px-3.5 py-2 rounded-lg text-sm font-medium transition-all ${
                 isActive('/dashboard')
-                  ? 'bg-cyan-500/10 text-cyan-400 border border-cyan-500/30'
-                  : 'text-slate-300 hover:text-white hover:bg-slate-800/50'
+                  ? 'bg-blue-50 text-blue-700 border border-blue-100 shadow-soft-sm'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/80'
               }`}
             >
-              <Activity className="w-4 h-4" />
+              <Activity className="w-4 h-4 text-slate-500" />
               <span>Dashboard</span>
             </Link>
 
             <Link
               to="/history"
-              className={`flex items-center space-x-1.5 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+              className={`flex items-center space-x-2 px-3.5 py-2 rounded-lg text-sm font-medium transition-all ${
                 isActive('/history')
-                  ? 'bg-cyan-500/10 text-cyan-400 border border-cyan-500/30'
-                  : 'text-slate-300 hover:text-white hover:bg-slate-800/50'
+                  ? 'bg-blue-50 text-blue-700 border border-blue-100 shadow-soft-sm'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/80'
               }`}
             >
-              <History className="w-4 h-4" />
+              <History className="w-4 h-4 text-slate-500" />
               <span>History</span>
             </Link>
 
             <Link
               to="/methodology"
-              className={`flex items-center space-x-1.5 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+              className={`flex items-center space-x-2 px-3.5 py-2 rounded-lg text-sm font-medium transition-all ${
                 isActive('/methodology')
-                  ? 'bg-cyan-500/10 text-cyan-400 border border-cyan-500/30'
-                  : 'text-slate-300 hover:text-white hover:bg-slate-800/50'
+                  ? 'bg-blue-50 text-blue-700 border border-blue-100 shadow-soft-sm'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/80'
               }`}
             >
-              <BookOpen className="w-4 h-4" />
+              <BookOpen className="w-4 h-4 text-slate-500" />
               <span>Methodology</span>
             </Link>
           </div>
@@ -83,8 +85,8 @@ export const Navbar: React.FC = () => {
           {/* Right Action Buttons */}
           <div className="hidden md:flex items-center space-x-3">
             {/* Status indicator */}
-            <div className="hidden lg:flex items-center space-x-2 px-2.5 py-1 rounded-full bg-slate-900 border border-slate-800 text-[11px] font-mono text-slate-400">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <div className="hidden lg:flex items-center space-x-2 px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-xs font-medium text-emerald-700">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
               <span>Forensics Online</span>
             </div>
 
@@ -92,23 +94,23 @@ export const Navbar: React.FC = () => {
               <div className="flex items-center space-x-2">
                 <Link
                   to="/settings"
-                  className="p-2 rounded-md text-slate-400 hover:text-white hover:bg-slate-800 border border-transparent hover:border-slate-700 transition"
+                  className="p-2 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 border border-transparent hover:border-slate-200 transition"
                   title="Settings & Privacy"
                 >
                   <Settings className="w-4 h-4" />
                 </Link>
 
-                <div className="flex items-center space-x-2 pl-2 border-l border-slate-800">
+                <div className="flex items-center space-x-2 pl-2 border-l border-slate-200">
                   <div className="text-right">
-                    <p className="text-xs font-medium text-slate-200">{user.display_name || user.email.split('@')[0]}</p>
-                    <p className="text-[10px] text-slate-500 font-mono">Authenticated</p>
+                    <p className="text-xs font-semibold text-slate-800">{user.display_name || user.email.split('@')[0]}</p>
+                    <p className="text-[10px] text-slate-500">Security Analyst</p>
                   </div>
                   <button
                     onClick={() => {
                       logout();
                       navigate('/');
                     }}
-                    className="p-2 rounded-md text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 transition"
+                    className="p-2 rounded-lg text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition"
                     title="Sign Out"
                   >
                     <LogOut className="w-4 h-4" />
@@ -116,16 +118,16 @@ export const Navbar: React.FC = () => {
                 </div>
               </div>
             ) : (
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center space-x-2.5">
                 <Link
                   to="/login"
-                  className="px-3 py-1.5 text-xs font-medium text-slate-300 hover:text-white border border-slate-700 hover:border-slate-600 rounded-md transition"
+                  className="px-3.5 py-1.5 text-xs font-semibold text-slate-700 hover:text-slate-900 border border-slate-300 hover:border-slate-400 rounded-lg hover:bg-slate-50 transition shadow-soft-sm"
                 >
                   Sign In
                 </Link>
                 <Link
                   to="/register"
-                  className="px-3 py-1.5 text-xs font-semibold bg-cyan-500 hover:bg-cyan-400 text-black rounded-md transition shadow-cyber-glow"
+                  className="px-4 py-1.5 text-xs font-semibold bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition shadow-soft hover:shadow-soft-md"
                 >
                   Get Started
                 </Link>
@@ -137,7 +139,7 @@ export const Navbar: React.FC = () => {
           <div className="flex md:hidden">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-md text-slate-400 hover:text-white hover:bg-slate-800"
+              className="p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -147,32 +149,32 @@ export const Navbar: React.FC = () => {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-b border-cyber-border bg-[#0a0e17] px-4 pt-2 pb-4 space-y-1">
+        <div className="md:hidden border-b border-slate-200 bg-white px-4 pt-2 pb-4 space-y-1 shadow-soft-md">
           <Link
             to="/workspace"
             onClick={() => setMobileMenuOpen(false)}
-            className="block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800"
+            className="block px-3 py-2 rounded-lg text-base font-medium text-slate-700 hover:bg-slate-100"
           >
             Audio Workspace
           </Link>
           <Link
             to="/dashboard"
             onClick={() => setMobileMenuOpen(false)}
-            className="block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800"
+            className="block px-3 py-2 rounded-lg text-base font-medium text-slate-700 hover:bg-slate-100"
           >
             Dashboard
           </Link>
           <Link
             to="/history"
             onClick={() => setMobileMenuOpen(false)}
-            className="block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800"
+            className="block px-3 py-2 rounded-lg text-base font-medium text-slate-700 hover:bg-slate-100"
           >
             Analysis History
           </Link>
           <Link
             to="/methodology"
             onClick={() => setMobileMenuOpen(false)}
-            className="block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800"
+            className="block px-3 py-2 rounded-lg text-base font-medium text-slate-700 hover:bg-slate-100"
           >
             Methodology & Rules
           </Link>
@@ -181,7 +183,7 @@ export const Navbar: React.FC = () => {
               <Link
                 to="/settings"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800"
+                className="block px-3 py-2 rounded-lg text-base font-medium text-slate-700 hover:bg-slate-100"
               >
                 Settings & Privacy
               </Link>
@@ -191,7 +193,7 @@ export const Navbar: React.FC = () => {
                   setMobileMenuOpen(false);
                   navigate('/');
                 }}
-                className="w-full text-left px-3 py-2 rounded-md text-base font-medium text-rose-400 hover:bg-rose-500/10"
+                className="w-full text-left px-3 py-2 rounded-lg text-base font-medium text-rose-600 hover:bg-rose-50"
               >
                 Sign Out
               </button>
@@ -201,14 +203,14 @@ export const Navbar: React.FC = () => {
               <Link
                 to="/login"
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-full text-center py-2 text-sm font-medium text-slate-200 border border-slate-700 rounded-md"
+                className="w-full text-center py-2 text-sm font-medium text-slate-700 border border-slate-300 rounded-lg"
               >
                 Sign In
               </Link>
               <Link
                 to="/register"
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-full text-center py-2 text-sm font-semibold bg-cyan-500 text-black rounded-md"
+                className="w-full text-center py-2 text-sm font-semibold bg-blue-600 text-white rounded-lg shadow-soft"
               >
                 Get Started
               </Link>

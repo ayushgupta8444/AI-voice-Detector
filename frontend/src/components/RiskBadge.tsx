@@ -9,23 +9,23 @@ interface RiskBadgeProps {
 }
 
 export const RiskBadge: React.FC<RiskBadgeProps> = ({ category, size = 'md', showIcon = true }) => {
-  let colorClasses = 'bg-emerald-950/60 text-emerald-400 border-emerald-800/80';
+  let colorClasses = 'bg-emerald-50 text-emerald-700 border-emerald-200';
   let Icon = ShieldCheck;
 
   if (category === 'Critical Risk') {
-    colorClasses = 'bg-rose-950/60 text-rose-400 border-rose-700/80 shadow-danger-glow';
+    colorClasses = 'bg-rose-50 text-rose-700 border-rose-200';
     Icon = ShieldAlert;
   } else if (category === 'High Risk') {
-    colorClasses = 'bg-orange-950/60 text-orange-400 border-orange-700/80';
+    colorClasses = 'bg-orange-50 text-orange-700 border-orange-200';
     Icon = AlertTriangle;
   } else if (category === 'Medium Risk') {
-    colorClasses = 'bg-amber-950/60 text-amber-400 border-amber-700/80';
+    colorClasses = 'bg-amber-50 text-amber-800 border-amber-200';
     Icon = AlertCircle;
   }
 
   const sizeClasses = {
-    sm: 'text-[11px] px-2 py-0.5 gap-1',
-    md: 'text-xs px-2.5 py-1 gap-1.5',
+    sm: 'text-[11px] px-2 py-0.5 gap-1 font-medium',
+    md: 'text-xs px-2.5 py-1 gap-1.5 font-medium',
     lg: 'text-sm px-3.5 py-1.5 gap-2 font-semibold'
   }[size];
 
@@ -36,7 +36,7 @@ export const RiskBadge: React.FC<RiskBadgeProps> = ({ category, size = 'md', sho
   }[size];
 
   return (
-    <span className={`inline-flex items-center font-medium rounded-full border ${colorClasses} ${sizeClasses}`}>
+    <span className={`inline-flex items-center rounded-full border shadow-soft-sm ${colorClasses} ${sizeClasses}`}>
       {showIcon && <Icon className={iconSizes} />}
       <span>{category}</span>
     </span>
