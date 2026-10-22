@@ -89,8 +89,9 @@ async def analyze_audio(
 
         retained_path = persist_audio_if_enabled(temp_path, user_retention_enabled)
 
-        # Save to Database if user is authenticated
+        # Save to Database
         analysis_record = Analysis(
+            id=generate_uuid(),
             user_id=current_user.id if current_user else None,
             original_filename=clean_filename,
             audio_duration_seconds=round(duration, 2),
@@ -105,27 +106,29 @@ async def analyze_audio(
             transcription_model=transcription_model_name,
             detection_method_version="VoiceShield-Rules-v1.0",
             processing_status="completed",
-            retained_audio_path=retained_path
+            retained_audio_path=retained_path,
+            created_at=utc_now()
         )
 
-        if current_user:
-            db.add(analysis_record)
-            db.flush()
+        db.add(analysis_record)
+        db.flush()
 
-            if authenticity_dict:
-                auth_record = AudioAuthenticityResult(
-                    analysis_id=analysis_record.id,
-                    model_name=authenticity_dict["model_name"],
-                    model_version=authenticity_dict["model_version"],
-                    estimated_risk_score=authenticity_dict["estimated_risk_score"],
-                    result_summary=authenticity_dict["result_summary"],
-                    limitations=authenticity_dict["limitations"],
-                    acoustic_metrics=authenticity_dict.get("acoustic_metrics", {})
-                )
-                db.add(auth_record)
+        if authenticity_dict:
+            auth_record = AudioAuthenticityResult(
+                id=generate_uuid(),
+                analysis_id=analysis_record.id,
+                model_name=authenticity_dict["model_name"],
+                model_version=authenticity_dict["model_version"],
+                estimated_risk_score=authenticity_dict["estimated_risk_score"],
+                result_summary=authenticity_dict["result_summary"],
+                limitations=authenticity_dict["limitations"],
+                acoustic_metrics=authenticity_dict.get("acoustic_metrics", {}),
+                created_at=utc_now()
+            )
+            db.add(auth_record)
 
-            db.commit()
-            db.refresh(analysis_record)
+        db.commit()
+        db.refresh(analysis_record)
 
         # Prepare response
         auth_resp = None
@@ -192,8 +195,9 @@ def analyze_transcript_only(
     # Generate safe recommendations
     safe_actions = generate_safe_actions(indicators)
 
-    # Save to Database if user is authenticated
+    # Save to Database
     analysis_record = Analysis(
+        id=generate_uuid(),
         user_id=current_user.id if current_user else None,
         original_filename=payload.original_filename or "manual_transcript.txt",
         audio_duration_seconds=None,
@@ -208,13 +212,13 @@ def analyze_transcript_only(
         transcription_model="none_text_only",
         detection_method_version="VoiceShield-Rules-v1.0",
         processing_status="completed",
-        retained_audio_path=None
+        retained_audio_path=None,
+        created_at=utc_now()
     )
 
-    if current_user:
-        db.add(analysis_record)
-        db.commit()
-        db.refresh(analysis_record)
+    db.add(analysis_record)
+    db.commit()
+    db.refresh(analysis_record)
 
     return AnalysisResponse(
         id=analysis_record.id,
